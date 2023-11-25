@@ -1,4 +1,5 @@
 from html.parser import HTMLParser
+from html import unescape
 from io import BytesIO
 import datetime
 import re
@@ -28,7 +29,7 @@ class XML_parser(object):
         for cat in cats:
             slug = cat.find('.//{wp}category_nicename').text
             cats_dict[slug] = {'slug':slug,
-                               'name': htmlparser.unescape(cat.find("./{wp}cat_name").text),
+                               'name': unescape(cat.find("./{wp}cat_name").text),
                                'parent':cat.find("./{wp}category_parent").text,
                                'taxonomy': 'category'}
 
@@ -47,7 +48,7 @@ class XML_parser(object):
         for e in tags:
             slug = e.find('.//{wp}tag_slug').text
             tags_dict[slug] = {'slug':slug}
-            name = htmlparser.unescape(e.find('.//{wp}tag_name').text) # need some regex parsing here
+            name = unescape(e.find('.//{wp}tag_name').text) # need some regex parsing here
             tags_dict[slug]['name'] = name
             tags_dict[slug]['taxonomy'] = 'post_tag'
         return tags_dict
@@ -102,7 +103,7 @@ class XML_parser(object):
             if "category" in e.tag:
                 # get details
                 slug = e.attrib["nicename"]
-                name = htmlparser.unescape(e.text)
+                name = unescape(e.text)
                 # lookup the category or create one
                 cat_dict = self.category_dict.get(slug) or {"slug":slug,
                                                              "name":name,
@@ -112,7 +113,7 @@ class XML_parser(object):
             elif e.tag[-3:] == 'tag':
                 # get details
                 slug = e.attrib.get("tag_slug")
-                name = htmlparser.unescape(e.text)
+                name = unescape(e.text)
                 # lookup the tag or create one
                 tag_dict = self.tags_dict.get(slug) or {"slug":slug,
                                                         "name":name,
