@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'modelcluster',
     'rest_framework',
 
-    'wagtail.core',
+    'wagtail',
     'wagtail.admin',
     'wagtail.documents',
     'wagtail.snippets',
@@ -141,3 +141,5 @@ MEDIA_URL = '/media/'
 COMMENTS_APP = "django_comments_xtd"
 COMMENTS_XTD_MAX_THREAD_LEVEL = 2
 BLOG_PAGINATION_PER_PAGE=2
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
