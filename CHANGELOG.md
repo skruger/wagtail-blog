@@ -1,3 +1,15 @@
+# 5.0.0
+
+- Update major version to match wagtail major version to reduce confusion (no other changes)
+
+# 3.1.0
+
+- Update to support django 4.2 and wagtail 5.2
+
+# 3.0.0
+
+- Update django versions
+
 # 2.3.5
 
 - For truncated images, do not import instead of allow truncated image. Wagtail can't support them so it breaks later in Wagtail usage.
