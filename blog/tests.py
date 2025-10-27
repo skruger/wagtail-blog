@@ -192,8 +192,8 @@ class BlogTests(TestCase):
         with open("test-data.json") as test_json:
             posts = json.load(test_json)
         command.create_blog_pages(posts, self.blog_index)
-        self.assertEquals(Page.objects.all().count(), 4)
-        self.assertEquals(BlogPage.objects.all().count(), 1)
+        self.assertEqual(Page.objects.all().count(), 4)
+        self.assertEqual(BlogPage.objects.all().count(), 1)
         page = BlogPage.objects.get()
         self.assertEqual(page.title, "My wordpress title")
         self.assertInHTML("<strong>Bold here</strong>", page.body)
@@ -227,8 +227,8 @@ class BlogTests(TestCase):
         """
         command = Command()
         command.handle(xml=self.xml_path, blog_index="blog")
-        self.assertEquals(Page.objects.all().count(), 6)
-        self.assertEquals(BlogPage.objects.all().count(), 3)
+        self.assertEqual(Page.objects.all().count(), 6)
+        self.assertEqual(BlogPage.objects.all().count(), 3)
         page = BlogPage.objects.filter(
             slug="10-things-super-successful-people-do-during-lunch"
         ).get()
